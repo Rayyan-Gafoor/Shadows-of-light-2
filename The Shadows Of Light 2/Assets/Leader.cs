@@ -40,14 +40,14 @@ public class Leader : MonoBehaviour
                 Debug.Log("Player reached");
                 moving = true;
             }
-            while (moving)
+            if(moving)
             {
                 transform.position = Vector3.MoveTowards(transform.position, current__waypoint.position, move__speed * Time.deltaTime);
                 if (Vector3.Distance(transform.position, current__waypoint.position) < dis_threshold)
                 {
                     current__waypoint = waypoints.get_next_waypoint(current__waypoint);
                     transform.LookAt(current__waypoint);
-                   // moving = false;
+                    moving = false;
 
                 }
             }
