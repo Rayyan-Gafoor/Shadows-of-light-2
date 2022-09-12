@@ -10,6 +10,7 @@ public class Leader : MonoBehaviour
     [SerializeField] float detection_threshold = 5;
     public bool moving;
     public bool player_reached;
+    public bool leader_stoped = false;
     public LayerMask player_mask;
     Transform current__waypoint;
     // Start is called before the first frame update
@@ -39,6 +40,11 @@ public class Leader : MonoBehaviour
             {
                 Debug.Log("Player reached");
                 moving = true;
+                if (waypoints.end == true)
+                {
+                    leader_stoped = true;
+                    //objective completed...do something 
+                }
             }
             if(moving)
             {

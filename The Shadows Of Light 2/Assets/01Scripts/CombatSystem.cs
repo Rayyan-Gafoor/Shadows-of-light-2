@@ -45,20 +45,9 @@ public class CombatSystem : MonoBehaviour
 
     }
 
-    /*IEnumerator melee_attack()
-    {
-        //weapon_orb.transform.position = attack_point.transform.position;
-        
-        weapon_orb.transform.position = Vector3.Lerp(attack_point.transform.position, attack_endpoint.transform.position, attack_speed * Time.deltaTime);
-        yield return new WaitForSeconds(melee_reset);
-        
-    }*/
+   
     void melee_attack()
     {
-
-        //Instantiate(weapon_orb, attack_point.transform.position, Quaternion.identity);
-        // weapon_orb.transform.position = attack_point.transform.position;
-        //weapon_orb.SetActive(true);
 
         frac += Time.deltaTime * attack_speed;
         weapon_orb.transform.position = Vector3.Lerp(attack_point.transform.position, attack_endpoint.transform.position, frac);

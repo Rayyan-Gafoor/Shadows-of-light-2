@@ -7,16 +7,22 @@ public class MeleeWeapon : MonoBehaviour
     [Header("Weapon Stats")]
     public GameObject player;
     public float attack_damage;
+
+    [Header("Object Layers")]
+    public LayerMask destructable;
+    
+    //refs
     EnemyHealthSystem enemy_health;
+    DestroyableObject obstruction;
     CombatSystem combat_system;
-    // Start is called before the first frame update
+    
     void Start()
     {
         combat_system = player.GetComponent<CombatSystem>();
         attack_damage = combat_system.attack_damage;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
@@ -27,6 +33,11 @@ public class MeleeWeapon : MonoBehaviour
         {
             enemy_health = other.gameObject.GetComponent<EnemyHealthSystem>();
             enemy_health.take_damage(attack_damage);
+        }
+        if (other.tag == "Destroyable")
+        {
+            obstruction = other.gameObject.GetComponent<DestroyableObject>();
+            obstruction.take_damage(attack_damage);
         }
     }
 }

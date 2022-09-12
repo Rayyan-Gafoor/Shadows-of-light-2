@@ -6,7 +6,12 @@ public class WaypointScript : MonoBehaviour
 {
     [Range(0, 2f)]
     [SerializeField] float waypoint_size = 1f;
+    public bool end = false;
 
+    private void Start()
+    {
+        end = false;
+    }
     private void OnDrawGizmos()
     {
         foreach (Transform t in transform)
@@ -30,12 +35,14 @@ public class WaypointScript : MonoBehaviour
         }
         if (current__waypoint.GetSiblingIndex() < transform.childCount - 1)
         {
+            end = false;
             return transform.GetChild(current__waypoint.GetSiblingIndex() + 1);
         }
         else
         {
+            end = true;
+            Debug.Log("End :" + end);
             return transform.GetChild(transform.childCount-1);
-            
         }
     }
 

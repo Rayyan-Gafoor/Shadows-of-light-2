@@ -53,24 +53,29 @@ public class QuestSystem : MonoBehaviour
     {
         if (quest_flag == 1)//quest is active 2= not active
         {
-            quest_name.GetComponent<TMPro.TextMeshProUGUI>().text = "this is quest one";
+            quest_name.GetComponent<TMPro.TextMeshProUGUI>().text = "What is Loneliness";
             if (objective_flag == 1)
             {
-                quest_objective.GetComponent<TMPro.TextMeshProUGUI>().text = "Explore the island";
+                quest_objective.GetComponent<TMPro.TextMeshProUGUI>().text = "Explore the Island";
             }
             else if (objective_flag == 2)
             {
-                quest_objective.GetComponent<TMPro.TextMeshProUGUI>().text = "Follow the creature";
+                quest_objective.GetComponent<TMPro.TextMeshProUGUI>().text = "Return to your Cave";
             }
             else if (objective_flag == 3)
             {
-                quest_objective.GetComponent<TMPro.TextMeshProUGUI>().text = "Destroy the Wall";
+                quest_objective.GetComponent<TMPro.TextMeshProUGUI>().text = "Follow the Creature";
             }
             else if (objective_flag == 4)
             {
-                quest_objective.GetComponent<TMPro.TextMeshProUGUI>().text = "Enter the MYSTERIOUS portal";
+                quest_objective.GetComponent<TMPro.TextMeshProUGUI>().text = "Destroy the Wall";
+
             }
             else if (objective_flag == 5)
+            {
+                quest_objective.GetComponent<TMPro.TextMeshProUGUI>().text = "Enter the MYSTERIOUS portal";
+            }
+            else if (objective_flag == 6)
             {
                 //quest_objective.text = "Enter the MYSTERIOUS portal";
                 active_quest = 2;
