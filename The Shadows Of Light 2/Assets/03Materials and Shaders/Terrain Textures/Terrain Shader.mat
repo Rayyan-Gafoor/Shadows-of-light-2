@@ -35,11 +35,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Grass_Diffuse:
-        m_Texture: {fileID: 2800000, guid: 4900b2b933f056247806df532f93e2b9, type: 3}
+        m_Texture: {fileID: 2800000, guid: d3a676c181c698c40a5acc858ccb8dd5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Grass_Gloss:
-        m_Texture: {fileID: 2800000, guid: 6c41a2cea80b4fc499bac2a6c14a4514, type: 3}
+        m_Texture: {fileID: 2800000, guid: d3a676c181c698c40a5acc858ccb8dd5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Grass_Normals:
@@ -74,15 +74,15 @@ Material:
     m_Floats:
     - _Contrast: 25
     - _GrassNormal_Strength: 1
-    - _Grass_Gloss_Strength: 0
+    - _Grass_Gloss_Strength: 15.08
     - _Level: 1.94
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RockNormal_Strength: 0.2
     - _Rock_Gloss_Strength: 0
-    - _UpNode: 0.6
+    - _UpNode: 0.657
     m_Colors:
-    - _Grass_Tiling: {r: 150, g: 150, b: 0, a: 0}
+    - _Grass_Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Grass_offset: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 1, b: 0, a: 0}
     - _Rcok_Tiling: {r: 15, g: 15, b: 0, a: 0}

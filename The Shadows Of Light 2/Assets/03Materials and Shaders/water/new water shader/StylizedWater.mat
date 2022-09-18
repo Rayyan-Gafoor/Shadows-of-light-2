@@ -45,15 +45,15 @@ Material:
     - _Refraction_Scale: 1.5
     - _Refraction_Speed: 1
     - _Refraction_Strength: 1
-    - _Ripple_Dissolve: 30
-    - _Ripple_Scale: 1000
+    - _Ripple_Dissolve: 13.8
+    - _Ripple_Scale: 2000
     - _Ripple_TIme: 1
-    - _Transparency: 1.32
+    - _Transparency: 2.97
     - _Water_Depth: 11.09
     m_Colors:
-    - _DeepWater: {r: 0, g: 0.477273, b: 1, a: 0.33333334}
+    - _DeepWater: {r: 0, g: 0.47727293, b: 1, a: 1}
     - _Foam_Colour: {r: 0.2578312, g: 9.091586, b: 9.849154, a: 1}
-    - _Ripple_Colour: {r: 1, g: 1, b: 1, a: 0}
+    - _Ripple_Colour: {r: 1, g: 1, b: 1, a: 1}
     - _ShallowWater: {r: 0, g: 0.9815478, b: 1, a: 0.5019608}
   m_BuildTextureStacks: []
 --- !u!114 &8147710276726940242
