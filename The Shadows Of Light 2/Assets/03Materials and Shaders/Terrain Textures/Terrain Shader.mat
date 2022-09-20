@@ -72,6 +72,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Am_Ocl: 0.5
     - _Contrast: 25
     - _GrassNormal_Strength: 5
     - _Grass_Gloss_Strength: 0
@@ -79,7 +80,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RockNormal_Strength: 5
-    - _Rock_Gloss_Strength: 1
+    - _Rock_Gloss_Strength: 0
     - _UpNode: 0.38
     m_Colors:
     - _Grass_Tiling: {r: 1, g: 1, b: 0, a: 0}
