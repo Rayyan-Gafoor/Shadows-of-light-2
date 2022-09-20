@@ -43,14 +43,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Dissolve_Amount: 0.7
-    - _Dissolve_Power: 0.5
-    - _Distortion: 0.1
+    - _Dissolve_Amount: -15
+    - _Dissolve_Power: 0.4
+    - _Distortion: 0.2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Voronoi_Desnity: 10
+    - _Texture_Power: 1.5
+    - _Voronoi_Desnity: 40
     m_Colors:
-    - _Color: {r: 42.001057, g: 159.74077, b: 181.71884, a: 0.011764706}
+    - _Color: {r: 0, g: 32, b: 31.247059, a: 0.011764706}
     - _Distortion_Speed: {r: 0, g: 0.4, b: 0, a: 0}
     - _Scroll_Speed: {r: 0, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []
