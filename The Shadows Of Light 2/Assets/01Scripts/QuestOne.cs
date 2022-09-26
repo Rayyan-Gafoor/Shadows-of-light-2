@@ -62,7 +62,7 @@ public class QuestOne : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not reached");
+           // Debug.Log("Not reached");
         }
       
     }

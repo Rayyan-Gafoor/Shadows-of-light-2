@@ -7,7 +7,8 @@ public class LightControl : MonoBehaviour
     [Header("light Scene Settings")]
     public float start_color_temp;
     public float end_color_temp;
-    public Color start_color, end_color;
+    public float current_temp;
+    public Color start_color, end_color, current_color;
     public float duration;
     [Header("References")]
     public GameObject light_gameobject;
@@ -20,28 +21,35 @@ public class LightControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        directional_light = light_gameobject.GetComponent<Light>();
         
+        directional_light = light_gameobject.GetComponent<Light>();
+        current_color = start_color;
+        current_temp = start_color_temp;
     }
 
     // Update is called once per frame
     void Update()
     {
-       /* if (Input.GetKeyDown(KeyCode.T))
+        
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            directional_light.colorTemperature = colourTemp;
-            directional_light.color = light_color;
+            //Debug.Log("LC- This is a Test Fucntion");
+            StartCoroutine(lerp_float(current_temp, start_color_temp, end_color_temp, duration));
+            StartCoroutine(lerp_colour(current_color, start_color, end_color, duration));
+            Debug.Log(current_color + "" + current_color);
+        }
 
-        }*/
-
+    }
+    private void FixedUpdate()
+    {
     }
     private void OnTriggerExit(Collider other)
     {
         if(other.tag=="Player")
         {
            // Debug.Log("LC-Player Has Exited");
-            StartCoroutine(lerp_float(directional_light.colorTemperature, start_color_temp, end_color_temp,duration));
-            StartCoroutine(lerp_colour(directional_light.color, start_color, end_color, duration));
+            StartCoroutine(lerp_float(current_temp, start_color_temp, end_color_temp,duration));
+            StartCoroutine(lerp_colour(current_color, start_color, end_color, duration));
         }
     }
 
@@ -49,8 +57,8 @@ public class LightControl : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            StartCoroutine(lerp_float(directional_light.colorTemperature, end_color_temp, start_color_temp,  duration));
-            StartCoroutine(lerp_colour(directional_light.color, end_color, start_color,  duration));
+            StartCoroutine(lerp_float(current_temp, end_color_temp, start_color_temp,  duration));
+            StartCoroutine(lerp_colour(current_color, end_color, start_color,  duration));
         }
     }
     IEnumerator lerp_float(float lerped_value,float start, float end, float duration)
@@ -59,24 +67,31 @@ public class LightControl : MonoBehaviour
         float time_elapsed=0;
         while (time_elapsed < duration)
         {
-            lerped_value = Mathf.Lerp(start, end, time_elapsed / duration);
-            
-            time_elapsed += Time.deltaTime;
+            current_temp = Mathf.Lerp(start, end, time_elapsed/ duration);
+            Debug.Log("LC- current Temperature " + current_temp);
+            directional_light.colorTemperature = current_temp;
+            time_elapsed += Time.deltaTime ;
             yield return null;
+            //  Debug.Log("LC- lerp FLoat called ");
+            //  Debug.Log("LC- timer :"+time_elapsed);
         }
-       // Debug.Log("LC- Lerp Float function" + " ended");
+        // Debug.Log("LC- Lerp Float function" + " ended");
         lerped_value = end;
+        
+
     }
     IEnumerator lerp_colour(Color lerped_colour, Color start, Color end, float duration)
     {
         float time_elapsed = 0;
         while (time_elapsed < duration)
         {
-            lerped_colour = Color.Lerp(start, end, time_elapsed / duration);
-            
+            current_color = Color.Lerp(start, end, time_elapsed / duration);
+            directional_light.color = current_color;
             time_elapsed += Time.deltaTime;
             yield return null;
+
         }
-        lerped_colour = end;
+        current_color = end;
+
     }
 }
