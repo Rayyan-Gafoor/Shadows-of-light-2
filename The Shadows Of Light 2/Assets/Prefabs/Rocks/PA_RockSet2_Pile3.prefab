@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2482154325263475331}
   - component: {fileID: 6857122452150442165}
   - component: {fileID: 870863655351329868}
+  - component: {fileID: -659392628663356304}
   m_Layer: 0
   m_Name: PA_RockSet2_Pile3
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-659392628663356304
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452758247597510800}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -750982812177444729, guid: 26de558915954664d98f0a79a76ff798, type: 3}

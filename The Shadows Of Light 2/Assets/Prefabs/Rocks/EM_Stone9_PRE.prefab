@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2799241974881452646}
   - component: {fileID: 1675105729828644621}
+  - component: {fileID: -3997333173703410796}
   m_Layer: 0
   m_Name: EM_Stone9_PRE
   m_TagString: Untagged
@@ -62,6 +63,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8242134655914486732}
   m_Enabled: 1
+--- !u!64 &-3997333173703410796
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2797170758979275122}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &4389207618625514271
 GameObject:
   m_ObjectHideFlags: 0

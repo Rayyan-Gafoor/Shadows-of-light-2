@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4300245722716799839}
   - component: {fileID: 9076887513538442286}
+  - component: {fileID: -5334372232301491090}
   m_Layer: 0
   m_Name: EM_Rock02b_PRE
   m_TagString: Untagged
@@ -62,6 +63,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7333731920669489602}
   m_Enabled: 1
+--- !u!64 &-5334372232301491090
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3523602851544553957}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &6227165426785541627
 GameObject:
   m_ObjectHideFlags: 0
