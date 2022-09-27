@@ -37,7 +37,7 @@ Material:
     m_Floats:
     - _FoamAmount: 1.03
     - _Foam_Scale: 10000
-    - _Foam_Speed: 0.05
+    - _Foam_Speed: 0.2
     - _Foam_cutoff: 1
     - _QueueControl: 0
     - _QueueOffset: 0
