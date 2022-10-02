@@ -8,7 +8,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
     [SerializeField] float move_speed;
     public float walk_speed;
     public float sprint_speed;
-
+    public bool can_move= true;
     [Header("Jumping")]
     public float jump_force;
     public float jump_cooldown;
@@ -80,7 +80,11 @@ public class ThirdPersonCharacterController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        move_player();
+        if (can_move)
+        {
+            move_player();
+        }
+       
     }
 
     void player_inputs()
@@ -124,24 +128,33 @@ public class ThirdPersonCharacterController : MonoBehaviour
     //movement state handler
     void state_handler()
     {
-         // running | sprinting state
-        if (grounded && Input.GetKey(sprint_key))
+        // running | sprinting state
+        while (!can_move)
         {
-            //Debug.Log("TPCC- is sprinting");
-            state = movement_states.sprinting;
-            move_speed = sprint_speed;
+            move_speed = 0;
         }
-        // walking state
-        else if (grounded)
+         if (can_move)
         {
-            state = movement_states.walking;
-            move_speed = walk_speed;
+          
+            if (grounded && Input.GetKey(sprint_key))
+            {
+                //Debug.Log("TPCC- is sprinting");
+                state = movement_states.sprinting;
+                move_speed = sprint_speed;
+            }
+            // walking state
+            else if (grounded)
+            {
+                state = movement_states.walking;
+                move_speed = walk_speed;
+            }
+            // not on ground | air state
+            else
+            {
+                state = movement_states.air;
+            }
         }
-        // not on ground | air state
-        else
-        {
-            state = movement_states.air;
-        }
+        
     }
     void speed_control()
     {
