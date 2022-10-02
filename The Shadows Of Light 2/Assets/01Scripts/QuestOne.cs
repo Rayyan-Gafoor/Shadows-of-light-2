@@ -12,12 +12,12 @@ public class QuestOne : MonoBehaviour
     public bool quest_completed;
 
     [Header("Step Variables")]
-    public GameObject step1_waypoint;// Dam
-    public GameObject step2_waypoint;// home 
+    public GameObject step1_leader;// Dam
+    public GameObject step2_leader;// home 
     public GameObject step3_leader;// creature to follow
     public GameObject step4_obstruction;// wall to destroy
 
-    Leader leader;
+    Leader leader1, leader2, leader3;
 
     public float test;
 
@@ -26,7 +26,9 @@ public class QuestOne : MonoBehaviour
     private void Start()
     {
         quest_system = game_manager.GetComponent<QuestSystem>();
-        leader = step3_leader.GetComponent<Leader>();
+        leader1 = step1_leader.GetComponent<Leader>();
+        leader2 = step2_leader.GetComponent<Leader>();
+        leader3 = step3_leader.GetComponent<Leader>();
     }
     private void Update()
     {
@@ -48,14 +50,14 @@ public class QuestOne : MonoBehaviour
             step_four();
         }
 
-        test = Vector3.Distance(Player.transform.position, step1_waypoint.transform.position);
+        test = Vector3.Distance(Player.transform.position, step1_leader.transform.position);
     }
     //step one, explore the island
     #region step one : Explore the Island
     public void step_one()
     {
         //quest_system.waypoint = step1_waypoint;
-        if (quest_system.reach(step1_waypoint))
+        if (quest_system.reach(step1_leader))
         {
             Debug.Log("Play Animation");
             StartCoroutine(next_step());
@@ -71,7 +73,7 @@ public class QuestOne : MonoBehaviour
     public void step_two()
     {
         //quest_system.waypoint = step1_waypoint;
-        if (quest_system.reach(step2_waypoint))
+        if (quest_system.reach(step2_leader))
         {
             Debug.Log("Play Animation");
             StartCoroutine(next_step());
@@ -86,7 +88,7 @@ public class QuestOne : MonoBehaviour
     #region step three : Follow The Creature
     public void step_three()
     {
-        if (leader.leader_stoped == true)
+        if (leader3.leader_stoped == true)
         {
             Debug.Log("Play second step animation");
             StartCoroutine(next_step());

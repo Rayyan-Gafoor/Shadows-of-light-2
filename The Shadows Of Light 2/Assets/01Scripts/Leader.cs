@@ -8,6 +8,8 @@ public class Leader : MonoBehaviour
     [SerializeField] float move__speed = 5f;
     [SerializeField] float dis_threshold = 0.1f;
     [SerializeField] float detection_threshold = 5;
+    public GameObject Spirit;
+    public GameObject spirit_form;
     public bool moving;
     public bool player_reached;
     public bool leader_stoped = false;
@@ -16,6 +18,7 @@ public class Leader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         if (waypoints == null)
         { return; }
         else
@@ -48,13 +51,16 @@ public class Leader : MonoBehaviour
             }
             if(moving)
             {
+                spirit_form.SetActive(true);
+                Spirit.SetActive(false);
                 transform.position = Vector3.MoveTowards(transform.position, current__waypoint.position, move__speed * Time.deltaTime);
                 if (Vector3.Distance(transform.position, current__waypoint.position) < dis_threshold)
                 {
                     current__waypoint = waypoints.get_next_waypoint(current__waypoint);
                     transform.LookAt(current__waypoint);
                     moving = false;
-
+                    spirit_form.SetActive(false);
+                    Spirit.SetActive(true);
                 }
             }
             //if(Vector3.Distance)

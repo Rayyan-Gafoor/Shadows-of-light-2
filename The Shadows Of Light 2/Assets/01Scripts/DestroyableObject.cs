@@ -7,9 +7,13 @@ public class DestroyableObject : MonoBehaviour
     [Header("Object Stats")]
     public float lifeline;
     public float current_lifeline;
+
+    public GameObject destroyed_obj;
+
     // Start is called before the first frame update
     void Start()
     {
+        destroyed_obj.SetActive(false);
         current_lifeline = lifeline;
     }
 
@@ -19,7 +23,8 @@ public class DestroyableObject : MonoBehaviour
         if (current_lifeline < 0)
         {
             //play animation of falling wall
-            Destroy(gameObject);
+            destroyed_obj.SetActive(true);
+            Destroy(gameObject,0.2f);
         }
     }
 }
