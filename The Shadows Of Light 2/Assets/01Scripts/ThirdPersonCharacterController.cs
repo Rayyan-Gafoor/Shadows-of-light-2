@@ -32,6 +32,9 @@ public class ThirdPersonCharacterController : MonoBehaviour
     public KeyCode jump_key = KeyCode.Space;
     public KeyCode sprint_key = KeyCode.LeftShift;
 
+    [Header("Animation Handler")]
+    public GameObject player_model;
+    Animator animator;
     [Header("References")]
     public Transform orientation;
     [SerializeField] Rigidbody rb;
@@ -52,6 +55,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = player_model.GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         can_jump = true;
@@ -115,6 +119,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
             rb.AddForce(move_direction.normalized * move_speed * 10f* air_multiplier, ForceMode.Force);
         }
         rb.useGravity = !on_slope();
+        animation_controller();
     }
     //movement state handler
     void state_handler()
@@ -174,6 +179,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
     {
         exit_slope = true;
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        animator.SetBool("Jumpin", true);
         rb.AddForce(transform.up * jump_force, ForceMode.Impulse);
     }
     void jump_reset()
@@ -181,5 +187,25 @@ public class ThirdPersonCharacterController : MonoBehaviour
         can_jump = true;
         exit_slope = false;
     }
+    void animation_controller()
+    {
+        if(move_direction!= Vector3.zero)
+        {
+           
+            animator.SetBool("Walking", true);
+            if (state == movement_states.sprinting)
+            {
+                animator.SetBool("Running", true);
+            }
+        }
+        else if(move_direction== Vector3.zero)
+        {
+            animator.SetBool("Walking", false);
+            animator.SetBool("Running", false);
+
+
+        }
+    }
+    
     
 }
