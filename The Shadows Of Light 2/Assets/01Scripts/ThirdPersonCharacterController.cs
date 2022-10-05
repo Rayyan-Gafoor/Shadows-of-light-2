@@ -72,6 +72,8 @@ public class ThirdPersonCharacterController : MonoBehaviour
         if (grounded)
         {
             rb.drag = ground_drag;
+          
+
         }
         else
         {
@@ -129,13 +131,16 @@ public class ThirdPersonCharacterController : MonoBehaviour
     void state_handler()
     {
         // running | sprinting state
-        while (!can_move)
+        if (!can_move)
         {
             move_speed = 0;
         }
-         if (can_move)
+        else if (can_move)
         {
-          
+            move_speed = walk_speed;
+
+        }
+       
             if (grounded && Input.GetKey(sprint_key))
             {
                 //Debug.Log("TPCC- is sprinting");
@@ -153,7 +158,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
             {
                 state = movement_states.air;
             }
-        }
+        
         
     }
     void speed_control()
@@ -192,7 +197,8 @@ public class ThirdPersonCharacterController : MonoBehaviour
     {
         exit_slope = true;
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        animator.SetBool("Jumpin", true);
+        //animator.SetBool("Jump", true);
+        animator.SetTrigger("Jump");
         rb.AddForce(transform.up * jump_force, ForceMode.Impulse);
     }
     void jump_reset()
@@ -205,18 +211,31 @@ public class ThirdPersonCharacterController : MonoBehaviour
         if(move_direction!= Vector3.zero)
         {
            
-            animator.SetBool("Walking", true);
+           // animator.SetBool("Walking", true);
             if (state == movement_states.sprinting)
             {
                 animator.SetBool("Running", true);
+                animator.SetBool("Walking", false);
+            }
+            else if (state == movement_states.walking)
+            {
+               //Debug.Log("Animator Controller- TPCC- is walking");
+                animator.SetBool("Walking", true);
+                animator.SetBool("Running", false);
             }
         }
         else if(move_direction== Vector3.zero)
         {
             animator.SetBool("Walking", false);
             animator.SetBool("Running", false);
+            
 
-
+        }
+        IEnumerator idle_controller()
+        {
+            yield return new WaitForSeconds(5f);
+            animator.SetTrigger("IdleJump");
+            
         }
     }
     

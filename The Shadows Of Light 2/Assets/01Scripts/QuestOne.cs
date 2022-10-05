@@ -57,7 +57,7 @@ public class QuestOne : MonoBehaviour
     public void step_one()
     {
         //quest_system.waypoint = step1_waypoint;
-        if (quest_system.reach(step1_leader))
+        if (leader1.leader_stoped==true)
         {
             Debug.Log("Play Animation");
             StartCoroutine(next_step());
@@ -73,7 +73,7 @@ public class QuestOne : MonoBehaviour
     public void step_two()
     {
         //quest_system.waypoint = step1_waypoint;
-        if (quest_system.reach(step2_leader))
+        if (leader3.leader_stoped == true)
         {
             Debug.Log("Play Animation");
             StartCoroutine(next_step());
