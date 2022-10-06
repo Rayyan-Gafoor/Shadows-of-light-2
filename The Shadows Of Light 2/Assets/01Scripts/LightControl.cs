@@ -68,7 +68,7 @@ public class LightControl : MonoBehaviour
         while (time_elapsed < duration)
         {
             current_temp = Mathf.Lerp(start, end, time_elapsed/ duration);
-            Debug.Log("LC- current Temperature " + current_temp);
+           // Debug.Log("LC- current Temperature " + current_temp);
             directional_light.colorTemperature = current_temp;
             time_elapsed += Time.deltaTime ;
             yield return null;
