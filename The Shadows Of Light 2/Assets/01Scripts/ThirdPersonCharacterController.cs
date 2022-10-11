@@ -87,6 +87,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
             move_player();
         }
        
+       
     }
 
     void player_inputs()
