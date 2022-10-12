@@ -6,6 +6,18 @@ ModelImporter:
   - first:
       74: -7884840065743279227
     second: Body 1|Body 1Action
+  - first:
+      74: 4088014671050203376
+    second: Arm1|Body 1Action.001
+  - first:
+      74: 6811281458296888466
+    second: Arm2|Body 1Action.002
+  - first:
+      74: 6432271212613332992
+    second: Head|Body 1Action.003
+  - first:
+      74: -7195365479886468420
+    second: Broken Body holder|Body 1Action.007
   externalObjects: {}
   materials:
     materialImportMode: 2
