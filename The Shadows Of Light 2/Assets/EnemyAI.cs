@@ -6,9 +6,9 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     public float look_radius = 30f;
-    public float attack_radius = 20f;
+    public float stop_radius = 20f;
     public GameObject player;
-    public bool can_move;
+    public bool can_move, can_look;
     public bool can_attack;
     Transform target;
     NavMeshAgent agent;
@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
     {
         target = player.transform;
         agent = GetComponent<NavMeshAgent>();
-        agent.stoppingDistance = attack_radius;
+        agent.stoppingDistance = stop_radius;
     }
 
     // Update is called once per frame
@@ -31,13 +31,13 @@ public class EnemyAI : MonoBehaviour
             if (can_move)
             {
                 agent.SetDestination(target.position);
+                
             }
-            face_target();
-
-            if (distance < agent.stoppingDistance)
+            if (can_look)
             {
-                //attack
+                face_target();
             }
+            
         }
         else
         {
@@ -56,6 +56,6 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, look_radius);
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, attack_radius);
+        Gizmos.DrawWireSphere(transform.position, stop_radius);
     }
 }

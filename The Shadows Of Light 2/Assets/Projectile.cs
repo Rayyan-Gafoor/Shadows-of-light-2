@@ -7,13 +7,18 @@ public class Projectile : MonoBehaviour
     public float enemy_damage;
     public Transform player;
     public float move_speed;
+    public GameObject prefab;
     public GameObject destroyed_prefab;
+    GameObject this_obj;
     PlayerHealth player_health;
     Rigidbody rb;
     Vector3 movedirection;
 
     private void Start()
     {
+        prefab.SetActive(true);
+        destroyed_prefab.SetActive(false);
+        this_obj = this.gameObject;
         player = GameObject.Find("Player").transform;
         player_health = player.GetComponent<PlayerHealth>();
         rb = GetComponent<Rigidbody>();
@@ -25,15 +30,20 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log("Contact with player");
             player_health.take_damage(enemy_damage);
-            Instantiate(destroyed_prefab, transform.position, Quaternion.identity);
+            prefab.SetActive(false);
+            destroyed_prefab.SetActive(true);
+            // Instantiate(destroyed_prefab, transform.position, Quaternion.identity);
+            //this_obj.SetActive(false);
 
-            
-           // Destroy(gameObject,0.2f);
+            // Destroy(gameObject,0.2f);
         }
-        else if (other.tag != "Enemy")
+        else if (other.tag != "Enemy" && other.tag!="EnemyWeapon")
         {
-            Instantiate(destroyed_prefab, transform.position, Quaternion.identity);
-           //Destroy(gameObject,0.2f);
+            prefab.SetActive(false);
+            destroyed_prefab.SetActive(true);
+            //this_obj.SetActive(false);
+            //Instantiate(destroyed_prefab, transform.position, Quaternion.identity);
+            //Destroy(gameObject,0.2f);
         }
     }
     void projectile_behaviour()

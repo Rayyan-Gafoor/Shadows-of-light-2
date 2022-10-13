@@ -8,6 +8,7 @@ TagManager:
   - Waypoint
   - Destroyable
   - water
+  - EnemyWeapon
   layers:
   - Default
   - TransparentFX
