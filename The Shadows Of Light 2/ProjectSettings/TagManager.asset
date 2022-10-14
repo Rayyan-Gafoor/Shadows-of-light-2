@@ -9,6 +9,7 @@ TagManager:
   - Destroyable
   - water
   - EnemyWeapon
+  - weapon
   layers:
   - Default
   - TransparentFX

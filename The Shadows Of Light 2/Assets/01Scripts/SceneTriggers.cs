@@ -32,6 +32,7 @@ public class SceneTriggers : MonoBehaviour
         yield return new WaitForSeconds(scene_time);
         scene_cam.SetActive(false);
         player_controller.can_move = true;
+        this.gameObject.SetActive(false);
 
     }
 }

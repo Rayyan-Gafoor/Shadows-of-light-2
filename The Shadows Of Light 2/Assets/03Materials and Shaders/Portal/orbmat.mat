@@ -107,11 +107,11 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Fresnel_Power: 3.5
+    - _Fresnel_Power: 2.38
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _InnerPower: 5
+    - _InnerPower: 0.84
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -132,9 +132,9 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Fresnel_Colour: {r: 95.678535, g: 0, b: 222.86098, a: 0}
-    - _Fresnel_Colour2: {r: 101.36459, g: 77.38113, b: 61.679394, a: 0}
+    - _Fresnel_Colour: {r: 0, g: 8.574186, b: 7.0279436, a: 0}
+    - _Fresnel_Colour2: {r: 153.404, g: 0, b: 5.1604967, a: 0}
     - _MainColour: {r: 1, g: 0.2263243, b: 0, a: 0}
-    - _Main_Colour: {r: 0, g: 0.35068417, b: 3.5011187, a: 0}
+    - _Main_Colour: {r: 0, g: 4.6742682, b: 4.298912, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

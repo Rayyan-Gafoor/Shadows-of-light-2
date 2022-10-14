@@ -40,6 +40,7 @@ public class EnemyHealthSystem : MonoBehaviour
     public void take_damage(float damage_amount)
     {
         current_health -= damage_amount;
+        Debug.Log("Enemy Damaged");
         if (current_health < 0)
         {
             Destroy(gameObject);
@@ -49,6 +50,7 @@ public class EnemyHealthSystem : MonoBehaviour
             }
         }
     }
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
