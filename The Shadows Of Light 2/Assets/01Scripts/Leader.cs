@@ -15,10 +15,17 @@ public class Leader : MonoBehaviour
     public bool leader_stoped = false;
     public LayerMask player_mask;
     Transform current__waypoint;
+
+    [Header("Dissolve")]
+    public GameObject fox_model;
+    public Material normal_mat, dissolve_mat;
+    Renderer rend;
     // Start is called before the first frame update
     void Start()
     {
-
+        rend = fox_model.GetComponent<Renderer>();
+        rend.enabled = true;
+        rend.material = normal_mat;
         if (waypoints == null)
         { return; }
         else
@@ -46,6 +53,8 @@ public class Leader : MonoBehaviour
                 if (waypoints.end == true)
                 {
                     leader_stoped = true;
+                    rend.material = dissolve_mat;
+                    DestroyObject(gameObject, 3f);
                     //objective completed...do something 
                 }
             }
