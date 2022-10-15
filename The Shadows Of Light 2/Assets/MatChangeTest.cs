@@ -19,9 +19,6 @@ public class MatChangeTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            rend.material = dissolve_material;
-        }
+        
     }
 }

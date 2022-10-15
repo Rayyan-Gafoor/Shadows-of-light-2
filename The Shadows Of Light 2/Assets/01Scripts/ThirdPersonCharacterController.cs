@@ -196,10 +196,10 @@ public class ThirdPersonCharacterController : MonoBehaviour
     }
     void jump()
     {
+        animator.SetTrigger("Jump");
         exit_slope = true;
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //animator.SetBool("Jump", true);
-        animator.SetTrigger("Jump");
         rb.AddForce(transform.up * jump_force, ForceMode.Impulse);
     }
     void jump_reset()

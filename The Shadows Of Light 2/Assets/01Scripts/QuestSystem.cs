@@ -18,10 +18,10 @@ public class QuestSystem : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        /*if (Input.GetKeyDown(KeyCode.T))
         {
             objective_flag = objective_flag + 1;
-        }
+        }*/
         quest_handler();
         quest_one_UIhandler();
 

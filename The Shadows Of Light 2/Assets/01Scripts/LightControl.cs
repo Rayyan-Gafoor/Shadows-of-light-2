@@ -31,13 +31,13 @@ public class LightControl : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.T))
+        /*if (Input.GetKeyDown(KeyCode.T))
         {
             //Debug.Log("LC- This is a Test Fucntion");
             StartCoroutine(lerp_float(current_temp, start_color_temp, end_color_temp, duration));
             StartCoroutine(lerp_colour(current_color, start_color, end_color, duration));
             Debug.Log(current_color + "" + current_color);
-        }
+        }*/
 
     }
     private void FixedUpdate()
