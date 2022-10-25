@@ -14,9 +14,18 @@ public class Interactor : MonoBehaviour
     public bool is_external_activator;
     public GameObject external_object;
     externalActivator ea;
+
+    public GameObject door;
+
+    activateDoor door_sc;
     // Start is called before the first frame update
     void Start()
     {
+        if (door != null)
+        {
+            door_sc = door.GetComponent<activateDoor>();
+        }
+        
         if (external_object != null)
         {
             ea = external_object.GetComponent<externalActivator>();
@@ -38,7 +47,10 @@ public class Interactor : MonoBehaviour
            // UI.SetActive(true);
             if (Input.GetKey(KeyCode.E))
             {
-                
+                if (door != null)
+                {
+                    door_sc.flag += 1;
+                }
                 UI.SetActive(false);
                 if (object_activated != null)
                 {

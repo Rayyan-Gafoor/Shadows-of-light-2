@@ -19,9 +19,12 @@ public class externalActivator : MonoBehaviour
     public GameObject UI;
     public GameObject object_activated;
     public GameObject object_deactivated;
+    public GameObject door;
 
+    activateDoor door_sc;
     private void Start()
     {
+        door_sc = door.GetComponent<activateDoor>();
         can_interact = false;
         if (to_activate != null)
         {
@@ -54,6 +57,7 @@ public class externalActivator : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.E))
             {
+                door_sc.flag += 1;
                 UI.SetActive(false);
                 if (external_activator)
                 {
