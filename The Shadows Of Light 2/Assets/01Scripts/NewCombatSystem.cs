@@ -37,6 +37,13 @@ public class NewCombatSystem : MonoBehaviour
     public float weapon_active_time, ui_active_time;
     public float weapon_active_time_current, ui_active_time_current;
 
+    [Header("New System")]
+    public float cooldown_time = 2f;
+    float next_firetime = 0f;
+    public  int no_clicks = 0;
+    float last_clicktime = 0;
+    float maxComboDelay = 1;
+
     ThirdPersonCharacterController player_controller;
     private void Start()
     {
@@ -51,7 +58,7 @@ public class NewCombatSystem : MonoBehaviour
 
     private void Update()
     {
-        if (is_attacking)
+        /*if (is_attacking)
         {
             anime_state = animator.GetCurrentAnimatorStateInfo(0);
             anime_time = anime_state.normalizedTime;
@@ -61,16 +68,30 @@ public class NewCombatSystem : MonoBehaviour
                 is_attacking = false;
                 player_controller.can_move = true;
             }
-        }
-        
-        if (combo_time > 0)
+        }*/
+        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime>0.7f && animator.GetCurrentAnimatorStateInfo(0).IsName("sideSlash"))
         {
-            combo_time -= Time.deltaTime;
-            
+            animator.SetBool("hit1", false);
         }
-        if (combo_time <= 0)
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && animator.GetCurrentAnimatorStateInfo(0).IsName("downSlash"))
         {
-            combo_count = 0;
+            animator.SetBool("hit2", false);
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && animator.GetCurrentAnimatorStateInfo(0).IsName("ComboAttack"))
+        {
+            animator.SetBool("hit3", false);
+            no_clicks = 0;
+        }
+        if (Time.time - last_clicktime > maxComboDelay)
+        {
+            no_clicks = 0;
+        }
+        if (Time.time > next_firetime)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                on_click();
+            }
         }
         if (weapon_active_time_current > 0)
         {
@@ -104,13 +125,33 @@ public class NewCombatSystem : MonoBehaviour
             weapon_active_time_current = weapon_active_time;
             ui_active_time_current = ui_active_time;
             weapon_isactive = true;
-            animation_controller();
-            combo_count++;
+            //animation_controller();
+            //combo_count++;
         }
     }
 
-   
-    void animation_controller()
+    void on_click()
+    {
+        last_clicktime = Time.time;
+        no_clicks++;
+        if (no_clicks == 1)
+        {
+            animator.SetBool("hit1", true);
+        }
+        no_clicks = Mathf.Clamp(no_clicks, 0, 3);
+
+        if(no_clicks>= 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime>0.7f && animator.GetCurrentAnimatorStateInfo(0).IsName("sideSlash"))
+        {
+            animator.SetBool("hit1", false);
+            animator.SetBool("hit2", true);
+        }
+        if (no_clicks >= 3 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && animator.GetCurrentAnimatorStateInfo(0).IsName("downSlash"))
+        {
+            animator.SetBool("hit2", false);
+            animator.SetBool("hit3", true);
+        }
+    }
+    /*void animation_controller()
     {
         if (combo_count == 0 & !is_attacking)
         {
@@ -136,7 +177,7 @@ public class NewCombatSystem : MonoBehaviour
             Debug.Log("Hold- Slam Attack");
         }
     }
-
+    */
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;

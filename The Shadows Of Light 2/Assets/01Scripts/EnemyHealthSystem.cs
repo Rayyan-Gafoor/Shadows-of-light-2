@@ -12,11 +12,11 @@ public class EnemyHealthSystem : MonoBehaviour
 
     public GameObject destroyed_enemy;
     public GameObject player;
-    NewCombatSystem combat_system;
+    CombatSystem3 combat_system;
     // Start is called before the first frame update
     void Start()
     {
-        combat_system = player.GetComponent<NewCombatSystem>();
+        combat_system = player.GetComponent<CombatSystem3>();
         if (destroyed_enemy != null)
         {
             destroyed_enemy.SetActive(false);
