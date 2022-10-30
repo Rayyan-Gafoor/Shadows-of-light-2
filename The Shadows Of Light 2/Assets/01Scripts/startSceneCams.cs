@@ -84,5 +84,7 @@ public class startSceneCams : MonoBehaviour
         yield return new WaitForSeconds(time*2);
         NPC_cam5.SetActive(false);
         dolly_cam.SetActive(true);
+        yield return new WaitForSeconds(50f);
+        dolly_cam.SetActive(false);
     }
 }
