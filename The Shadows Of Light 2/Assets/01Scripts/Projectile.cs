@@ -32,18 +32,13 @@ public class Projectile : MonoBehaviour
             player_health.take_damage(enemy_damage);
             prefab.SetActive(false);
             destroyed_prefab.SetActive(true);
-            // Instantiate(destroyed_prefab, transform.position, Quaternion.identity);
-            //this_obj.SetActive(false);
-
-            // Destroy(gameObject,0.2f);
+         
         }
         else if (other.tag != "Enemy" && other.tag!="EnemyWeapon")
         {
             prefab.SetActive(false);
             destroyed_prefab.SetActive(true);
-            //this_obj.SetActive(false);
-            //Instantiate(destroyed_prefab, transform.position, Quaternion.identity);
-            //Destroy(gameObject,0.2f);
+
         }
     }
     void projectile_behaviour()
