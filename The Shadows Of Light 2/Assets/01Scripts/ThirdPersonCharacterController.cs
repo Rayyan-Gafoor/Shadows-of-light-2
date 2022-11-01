@@ -46,6 +46,11 @@ public class ThirdPersonCharacterController : MonoBehaviour
     [Header("Animation Handler")]
     public GameObject player_model;
     Animator animator;
+    public bool walking_particle;
+    public bool running_particle;
+    public bool swimming_particle;
+    public bool thread_particle;
+    public bool jump_particle;
     [Header("References")]
     public Transform orientation;
     [SerializeField] Rigidbody rb;
@@ -221,6 +226,11 @@ public class ThirdPersonCharacterController : MonoBehaviour
     void jump()
     {
         animator.SetTrigger("Jump");
+        walking_particle = false;
+        running_particle = false;
+        swimming_particle = false;
+        thread_particle = false;
+        jump_particle = true;
         exit_slope = true;
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //animator.SetBool("Jump", true);
@@ -243,6 +253,11 @@ public class ThirdPersonCharacterController : MonoBehaviour
                 animator.SetBool("Walking", false);
                 animator.SetBool("swimming", false);
                 animator.SetBool("treading", false);
+                walking_particle = false;
+                running_particle = true;
+                swimming_particle = false;
+                thread_particle = false;
+                jump_particle = false;
             }
             else if (state == movement_states.walking)
             {
@@ -251,6 +266,12 @@ public class ThirdPersonCharacterController : MonoBehaviour
                 animator.SetBool("Running", false);
                 animator.SetBool("swimming", false);
                 animator.SetBool("treading", false);
+
+                walking_particle = true;
+                running_particle = false;
+                swimming_particle = false;
+                thread_particle = false;
+                jump_particle = false;
             }
             else if (state == movement_states.swimming)
             {
@@ -258,6 +279,8 @@ public class ThirdPersonCharacterController : MonoBehaviour
                 animator.SetBool("Running", false);
                 //animator.SetBool("swimming", true);
                 animator.SetBool("treading", false);
+
+
             }
         }
         else if(move_direction== Vector3.zero)
@@ -269,17 +292,30 @@ public class ThirdPersonCharacterController : MonoBehaviour
         }
         if (in_water)
         {
+           
             if (move_direction == Vector3.zero)
             {
                 animator.SetBool("Walking", false);
                 animator.SetBool("Running", false);
                 animator.SetBool("swimming", false);
                 animator.SetBool("treading", true);
-                animator.SetBool("swimming", false);
+                walking_particle = false;
+                running_particle = false;
+                swimming_particle = false;
+                thread_particle = true;
+                jump_particle = false;
             }
             else
             {
+                animator.SetBool("Walking", false);
+                animator.SetBool("Running", false);
                 animator.SetBool("swimming", true);
+                animator.SetBool("treading", false);
+                walking_particle = false;
+                running_particle = false;
+                swimming_particle = true;
+                thread_particle = false;
+                jump_particle = false;
             }
 
         }
