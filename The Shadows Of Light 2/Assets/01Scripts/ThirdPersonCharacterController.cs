@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ThirdPersonCharacterController : MonoBehaviour
 {
+    #region variables
     [Header("Movement")]
     [SerializeField] float move_speed;
     public float walk_speed;
@@ -28,6 +29,16 @@ public class ThirdPersonCharacterController : MonoBehaviour
     bool exit_slope;
     RaycastHit slope_hit;
 
+    [Header("Swimming Stuff")]
+    public float ground_dis;
+    public bool in_water;
+
+    [Header("Steps Stuff")]
+    [SerializeField] GameObject stepRayUpper;
+    [SerializeField] GameObject stepRayLower;
+    [SerializeField] float stepHeight = 0.3f;
+    [SerializeField] float stepSmooth = 2f;
+
     [Header("Key Bindings")]
     public KeyCode jump_key = KeyCode.Space;
     public KeyCode sprint_key = KeyCode.LeftShift;
@@ -48,9 +59,18 @@ public class ThirdPersonCharacterController : MonoBehaviour
     {
         walking,
         sprinting,
+        swimming,
         air
     }
 
+    #endregion
+
+    private void Awake()
+    {
+        //rigidBody = GetComponent<Rigidbody>();
+
+        stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -72,8 +92,6 @@ public class ThirdPersonCharacterController : MonoBehaviour
         if (grounded)
         {
             rb.drag = ground_drag;
-          
-
         }
         else
         {
@@ -86,8 +104,9 @@ public class ThirdPersonCharacterController : MonoBehaviour
         {
             move_player();
         }
-       
-       
+        stepClimb();
+
+
     }
 
     void player_inputs()
@@ -154,6 +173,11 @@ public class ThirdPersonCharacterController : MonoBehaviour
                 state = movement_states.walking;
                 move_speed = walk_speed;
             }
+            else if (in_water)
+        {
+            state = movement_states.swimming;
+            move_speed = walk_speed;
+        }
             // not on ground | air state
             else
             {
@@ -217,19 +241,46 @@ public class ThirdPersonCharacterController : MonoBehaviour
             {
                 animator.SetBool("Running", true);
                 animator.SetBool("Walking", false);
+                animator.SetBool("swimming", false);
+                animator.SetBool("treading", false);
             }
             else if (state == movement_states.walking)
             {
                //Debug.Log("Animator Controller- TPCC- is walking");
                 animator.SetBool("Walking", true);
                 animator.SetBool("Running", false);
+                animator.SetBool("swimming", false);
+                animator.SetBool("treading", false);
+            }
+            else if (state == movement_states.swimming)
+            {
+                animator.SetBool("Walking", false);
+                animator.SetBool("Running", false);
+                //animator.SetBool("swimming", true);
+                animator.SetBool("treading", false);
             }
         }
         else if(move_direction== Vector3.zero)
         {
             animator.SetBool("Walking", false);
             animator.SetBool("Running", false);
-            
+
+           
+        }
+        if (in_water)
+        {
+            if (move_direction == Vector3.zero)
+            {
+                animator.SetBool("Walking", false);
+                animator.SetBool("Running", false);
+                animator.SetBool("swimming", false);
+                animator.SetBool("treading", true);
+                animator.SetBool("swimming", false);
+            }
+            else
+            {
+                animator.SetBool("swimming", true);
+            }
 
         }
         IEnumerator idle_controller()
@@ -239,6 +290,59 @@ public class ThirdPersonCharacterController : MonoBehaviour
             
         }
     }
-    
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "water")
+        {
+            in_water = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "water")
+        {
+            in_water = false;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "water")
+        {
+            in_water = true;
+        }
+    }
+    void stepClimb()
+    {
+        RaycastHit hitLower;
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f))
+        {
+            RaycastHit hitUpper;
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f))
+            {
+                rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+            }
+        }
+
+        RaycastHit hitLower45;
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitLower45, 0.1f))
+        {
+
+            RaycastHit hitUpper45;
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, 0.2f))
+            {
+                rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+            }
+        }
+
+        RaycastHit hitLowerMinus45;
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, 0.1f))
+        {
+
+            RaycastHit hitUpperMinus45;
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, 0.2f))
+            {
+                rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+            }
+        }
+    }
 }
