@@ -255,7 +255,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
                 animator.SetBool("treading", false);
                 walking_particle = false;
                 running_particle = true;
-                swimming_particle = false;
+                //swimming_particle = false;
                 thread_particle = false;
                 jump_particle = false;
             }
@@ -269,7 +269,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
                 walking_particle = true;
                 running_particle = false;
-                swimming_particle = false;
+                //swimming_particle = false;
                 thread_particle = false;
                 jump_particle = false;
             }
@@ -281,6 +281,14 @@ public class ThirdPersonCharacterController : MonoBehaviour
                 animator.SetBool("treading", false);
 
 
+            }
+            else if (state == movement_states.air)
+            {
+                walking_particle = false;
+                running_particle = false;
+                //swimming_particle = false;
+                thread_particle = false;
+                jump_particle = true;
             }
         }
         else if(move_direction== Vector3.zero)
@@ -319,6 +327,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
             }
 
         }
+        
         IEnumerator idle_controller()
         {
             yield return new WaitForSeconds(5f);

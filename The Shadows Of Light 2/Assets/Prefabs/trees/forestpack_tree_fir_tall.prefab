@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7763113855612557083}
   - component: {fileID: 7602925401484212671}
   - component: {fileID: 7691423816980403063}
+  - component: {fileID: 2758881018700375241}
   m_Layer: 0
   m_Name: forestpack_tree_fir_tall
   m_TagString: Untagged
@@ -133,3 +134,17 @@ CapsuleCollider:
   m_Height: 3.5331335
   m_Direction: 1
   m_Center: {x: 0.04, y: 1.6552377, z: -0.01}
+--- !u!64 &2758881018700375241
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7736142009471250883}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: fda5f0fbb824fb847a8635f96d681d0a, type: 3}

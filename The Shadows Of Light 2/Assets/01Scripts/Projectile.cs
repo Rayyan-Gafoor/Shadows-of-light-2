@@ -36,8 +36,9 @@ public class Projectile : MonoBehaviour
         }
         else if (other.tag != "Enemy" && other.tag!="EnemyWeapon")
         {
-            prefab.SetActive(false);
+            
             destroyed_prefab.SetActive(true);
+            prefab.SetActive(false);
 
         }
     }

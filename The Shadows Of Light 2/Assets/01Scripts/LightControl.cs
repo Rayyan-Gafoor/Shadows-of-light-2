@@ -11,8 +11,11 @@ public class LightControl : MonoBehaviour
     public Color start_color, end_color, current_color;
     public float duration;
     [Header("References")]
+    public GameObject door;
+    activateDoor activate;
     public GameObject light_gameobject;
     Light directional_light;
+    public bool can_change;
     /*public Color light_color;
     [Range(1500, 20000)]
     public float colourTemp;
@@ -21,16 +24,19 @@ public class LightControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        can_change = false;
+        activate = door.GetComponent<activateDoor>();
         directional_light = light_gameobject.GetComponent<Light>();
         current_color = start_color;
         current_temp = start_color_temp;
+        directional_light.colorTemperature = current_temp;
+        directional_light.color = current_color;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         /*if (Input.GetKeyDown(KeyCode.T))
         {
             //Debug.Log("LC- This is a Test Fucntion");
@@ -38,29 +44,43 @@ public class LightControl : MonoBehaviour
             StartCoroutine(lerp_colour(current_color, start_color, end_color, duration));
             Debug.Log(current_color + "" + current_color);
         }*/
+       
 
     }
     private void FixedUpdate()
     {
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.tag=="Player")
+        if(other.tag=="Player" && activate.light_can_change && can_change==false)
         {
-           // Debug.Log("LC-Player Has Exited");
+            // Debug.Log("LC-Player Has Exited");
+            can_change = true;
+
             StartCoroutine(lerp_float(current_temp, start_color_temp, end_color_temp,duration));
             StartCoroutine(lerp_colour(current_color, start_color, end_color, duration));
         }
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && activate.light_can_change && can_change == false)
         {
-            StartCoroutine(lerp_float(current_temp, end_color_temp, start_color_temp,  duration));
-            StartCoroutine(lerp_colour(current_color, end_color, start_color,  duration));
+            // Debug.Log("LC-Player Has Exited");
+            can_change = true;
+
+            StartCoroutine(lerp_float(current_temp, start_color_temp, end_color_temp, duration));
+            StartCoroutine(lerp_colour(current_color, start_color, end_color, duration));
         }
     }
+
+    /* private void OnTriggerEnter(Collider other)
+     {
+         if (other.tag == "Player")
+         {
+             StartCoroutine(lerp_float(current_temp, end_color_temp, start_color_temp,  duration));
+             StartCoroutine(lerp_colour(current_color, end_color, start_color,  duration));
+         }
+     }*/
     IEnumerator lerp_float(float lerped_value,float start, float end, float duration)
     {
         //Debug.Log("LC- Lerp Float function" + " called");

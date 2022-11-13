@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7938258265082241844}
   - component: {fileID: 2913904258313589829}
+  - component: {fileID: 2930150897654019466}
   m_Layer: 0
   m_Name: PT_Fruit_Tree_01_dead
   m_TagString: Untagged
@@ -228,6 +229,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3999259174687477464}
   m_Enabled: 1
+--- !u!64 &2930150897654019466
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305273425654282638}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &7562721908111488255
 GameObject:
   m_ObjectHideFlags: 0

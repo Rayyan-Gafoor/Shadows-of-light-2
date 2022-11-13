@@ -8,6 +8,8 @@ public class openDoor : MonoBehaviour
     public bool opening, can_open, opened;
     public float angle;
     public GameObject ui;
+    public AudioSource source;
+    public AudioClip door_clip;
 
     [SerializeField]
     Transform start, end;
@@ -17,6 +19,7 @@ public class openDoor : MonoBehaviour
     void Start()
     {
         transform.position = start.position;
+        source.clip = door_clip;
     }
 
     // Update is called once per frame
@@ -25,6 +28,8 @@ public class openDoor : MonoBehaviour
         if (Input.GetKey(KeyCode.E) && can_open)
         {
             opening = true;
+            source.clip = door_clip;
+            source.Play();
             ui.SetActive(false);
             can_open = false;
             opened = true;

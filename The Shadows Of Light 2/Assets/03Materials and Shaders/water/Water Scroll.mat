@@ -51,7 +51,7 @@ Material:
     - _Texture_Power: 1.5
     - _Voronoi_Desnity: 40
     m_Colors:
-    - _Color: {r: 0, g: 32, b: 31.247059, a: 0.011764706}
+    - _Color: {r: 0, g: 5.992157, b: 5.866667, a: 0.011764706}
     - _Distortion_Speed: {r: 0, g: 0.4, b: 0, a: 0}
     - _Scroll_Speed: {r: 0, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []

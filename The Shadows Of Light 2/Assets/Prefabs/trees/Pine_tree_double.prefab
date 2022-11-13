@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6320355689782093248}
   - component: {fileID: 6320355689781126912}
   - component: {fileID: 6320355689775892992}
+  - component: {fileID: -2620978588282068379}
   m_Layer: 0
   m_Name: Pine_tree_double
   m_TagString: Untagged
@@ -104,3 +105,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!64 &-2620978588282068379
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6320355689783327168}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: c869d248c07099445b26f966a64c3672, type: 3}

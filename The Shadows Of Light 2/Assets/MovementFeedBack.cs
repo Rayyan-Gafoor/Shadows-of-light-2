@@ -10,14 +10,19 @@ public class MovementFeedBack : MonoBehaviour
     public GameObject tread_particle;
     public ParticleSystem swim_particle;
     public GameObject swim_obj;
-    
+    public float particle_time;
+
+   
     ThirdPersonCharacterController controller;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         controller = gameObject.GetComponent<ThirdPersonCharacterController>();
         swim_particle = swim_obj.GetComponent<ParticleSystem>();
+        StartCoroutine(stop_particles());
+
     }
 
     // Update is called once per frame
@@ -27,6 +32,7 @@ public class MovementFeedBack : MonoBehaviour
         {
             walk_particle.SetActive(true);
             run_particle.SetActive(false);
+            swim_particle.enableEmission = false;
             StartCoroutine(stop_particles());
             tread_particle.SetActive(false);
             jump_particle.SetActive(false);
@@ -35,6 +41,7 @@ public class MovementFeedBack : MonoBehaviour
         {
             walk_particle.SetActive(false);
             run_particle.SetActive(true);
+            swim_particle.enableEmission = false;
             StartCoroutine(stop_particles());
             tread_particle.SetActive(false);
             jump_particle.SetActive(false);
@@ -48,7 +55,6 @@ public class MovementFeedBack : MonoBehaviour
                 swim_particle.Play();
                 swim_particle.enableEmission = true;
             }
-            
             tread_particle.SetActive(false);
             jump_particle.SetActive(false);
         }
@@ -56,6 +62,7 @@ public class MovementFeedBack : MonoBehaviour
         {
             walk_particle.SetActive(false);
             run_particle.SetActive(false);
+            swim_particle.enableEmission = false;
             StartCoroutine(stop_particles());
             tread_particle.SetActive(true);
             jump_particle.SetActive(false);
@@ -64,6 +71,7 @@ public class MovementFeedBack : MonoBehaviour
         {
             walk_particle.SetActive(false);
             run_particle.SetActive(false);
+            swim_particle.enableEmission = false;
             StartCoroutine(stop_particles());
             tread_particle.SetActive(false);
             jump_particle.SetActive(true);
@@ -71,8 +79,10 @@ public class MovementFeedBack : MonoBehaviour
     }
     IEnumerator stop_particles()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(particle_time);
         swim_particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 
     }
+
+    
 }

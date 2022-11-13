@@ -274,6 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6528918685951240270}
   - component: {fileID: 2072077342456815423}
+  - component: {fileID: 6498082399655643717}
   m_Layer: 0
   m_Name: EM_Tree2b_PRE
   m_TagString: Untagged
@@ -326,3 +327,17 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7528541433286287890}
   m_Enabled: 1
+--- !u!64 &6498082399655643717
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5895405806802236148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}

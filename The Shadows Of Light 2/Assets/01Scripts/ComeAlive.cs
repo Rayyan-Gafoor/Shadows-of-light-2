@@ -18,8 +18,9 @@ public class ComeAlive : MonoBehaviour
     {
         if (this.is_alive == true)
         {
-            doment.SetActive(false);
             alive.SetActive(true);
+            doment.SetActive(false);
+            is_alive=false;
         }
     }
     
