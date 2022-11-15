@@ -22,6 +22,9 @@ public class startSceneCams : MonoBehaviour
     [Header("Dolly Cam")]
     public GameObject dolly_cam;
 
+    [Header("NPC Holders")]
+    public GameObject NPC_figures;
+
     
     // Start is called before the first frame update
     void Start()
@@ -83,6 +86,7 @@ public class startSceneCams : MonoBehaviour
 
         yield return new WaitForSeconds(time*2);
         NPC_cam5.SetActive(false);
+        NPC_figures.SetActive(false);
         dolly_cam.SetActive(true);
         yield return new WaitForSeconds(48f);
         dolly_cam.SetActive(false);

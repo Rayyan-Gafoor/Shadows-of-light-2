@@ -10,6 +10,8 @@ TagManager:
   - water
   - EnemyWeapon
   - weapon
+  - cement
+  - dirt
   layers:
   - Default
   - TransparentFX

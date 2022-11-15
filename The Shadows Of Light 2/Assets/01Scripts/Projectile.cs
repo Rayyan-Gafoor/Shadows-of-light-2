@@ -30,9 +30,10 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log("Contact with player");
             player_health.take_damage(enemy_damage);
-            prefab.SetActive(false);
+            
             destroyed_prefab.SetActive(true);
-         
+            prefab.SetActive(false);
+
         }
         else if (other.tag != "Enemy" && other.tag!="EnemyWeapon")
         {

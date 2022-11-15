@@ -83,7 +83,7 @@ public class Interactor : MonoBehaviour
         {
             can_interact = true;
              UI.SetActive(true);
-            Debug.Log("Player reached");
+            //Debug.Log("Player reached");
         }
     }
     private void OnTriggerExit(Collider other)
@@ -92,7 +92,7 @@ public class Interactor : MonoBehaviour
         {
             can_interact = false;
             UI.SetActive(false);
-            Debug.Log("Player reached");
+           // Debug.Log("Player reached");
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealthSystem : MonoBehaviour
 {
@@ -11,11 +12,18 @@ public class EnemyHealthSystem : MonoBehaviour
     public LayerMask player_mask;
 
     public GameObject destroyed_enemy;
+   
     public GameObject player;
     CombatSystem3 combat_system;
+
+    [Header("UI")]
+    public GameObject enemy_ui;
+    public Image health_bar;
+    
     // Start is called before the first frame update
     void Start()
     {
+        enemy_ui.SetActive(true);
         combat_system = player.GetComponent<CombatSystem3>();
         if (destroyed_enemy != null)
         {
@@ -35,20 +43,30 @@ public class EnemyHealthSystem : MonoBehaviour
         {
             combat_system.in_combat = false;
         }
+        control_healthbar();
     }
 
     public void take_damage(float damage_amount)
     {
         current_health -= damage_amount;
-        Debug.Log("Enemy Damaged");
+        //Debug.Log("Enemy Damaged");
         if (current_health < 0)
         {
-            Destroy(gameObject);
+           
             if (destroyed_enemy != null)
             {
                 destroyed_enemy.SetActive(true);
             }
+            enemy_ui.SetActive(false);
+            Destroy(gameObject,0.2f);
+           
         }
+    }
+
+    void control_healthbar()
+    {
+        health_bar.fillAmount = current_health / max_health;
+        
     }
     
     private void OnDrawGizmos()

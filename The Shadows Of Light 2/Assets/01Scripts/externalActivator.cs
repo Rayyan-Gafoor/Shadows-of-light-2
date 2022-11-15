@@ -12,6 +12,7 @@ public class externalActivator : MonoBehaviour
     [Header("External Object")]
     public bool external_activator;
     public GameObject to_activate;
+    public GameObject Dome;
     ComeAlive come_alive;
 
     [Header("Interactor Comps")]
@@ -24,11 +25,13 @@ public class externalActivator : MonoBehaviour
     activateDoor door_sc;
     private void Start()
     {
+        Dome.SetActive(false);
         door_sc = door.GetComponent<activateDoor>();
         can_interact = false;
         if (to_activate != null)
         {
             come_alive = to_activate.GetComponent<ComeAlive>();
+            
         }
     }
     private void Update()
@@ -62,6 +65,7 @@ public class externalActivator : MonoBehaviour
                 if (external_activator)
                 {
                     come_alive.is_alive = true;
+                    Dome.SetActive(true);
                 }
                 if (object_activated != null)
                 {

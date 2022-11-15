@@ -89,7 +89,7 @@ public class EnemyCombatSystem : MonoBehaviour
         state = enemy_states.normal_ranged;
         yield return new WaitForSeconds(20f);
         state = enemy_states.degree_laser;
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(7f);
         state = enemy_states.rest;
         yield return new WaitForSeconds(10f);
         engage = true;

@@ -56,7 +56,11 @@ public class Pickup : MonoBehaviour
         transcript.SetActive(true);
         ui.SetActive(false);
         can_pickup = false;
-        lore.SetActive(true);
+        if (lore != null)
+        {
+            lore.SetActive(true);
+
+        }
         yield return new WaitForSeconds(2);
         //menu.SetActive(true);
         this.gameObject.SetActive(false);
