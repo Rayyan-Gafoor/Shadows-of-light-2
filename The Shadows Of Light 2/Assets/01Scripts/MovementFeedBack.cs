@@ -129,7 +129,7 @@ public class MovementFeedBack : MonoBehaviour
     {
         var ray = new Ray(this.transform.position, Vector3.down);
         RaycastHit hit_data;
-        if(Physics.Raycast(ray, out hit_data, 10))
+        if(Physics.Raycast(ray, out hit_data, height_offset))
         {
             if (hit_data.collider.tag == "cement")
             {

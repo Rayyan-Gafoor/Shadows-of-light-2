@@ -255,7 +255,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
                 animator.SetBool("treading", false);
                 walking_particle = false;
                 running_particle = true;
-                //swimming_particle = false;
+                swimming_particle = false;
                 thread_particle = false;
                 jump_particle = false;
             }
@@ -269,7 +269,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
                 walking_particle = true;
                 running_particle = false;
-                //swimming_particle = false;
+                swimming_particle = false;
                 thread_particle = false;
                 jump_particle = false;
             }
