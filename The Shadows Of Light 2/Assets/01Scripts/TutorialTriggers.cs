@@ -29,8 +29,7 @@ public class TutorialTriggers : MonoBehaviour
         if(can_exit && Input.GetMouseButton(0))
         {
             done = true;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+       
             tut_cam.SetActive(false);
             player_controller.can_move = true;
             tut_ui.SetActive(false);

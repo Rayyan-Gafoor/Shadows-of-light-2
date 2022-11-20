@@ -9,11 +9,17 @@ public class ThirdPersonCamera : MonoBehaviour
     public Transform player_model;
     public Rigidbody rb;
     public float rotation_speed;
+    public GameObject endScene;
+
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+      
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        
+        
+       
     }
 
     // Update is called once per frame
