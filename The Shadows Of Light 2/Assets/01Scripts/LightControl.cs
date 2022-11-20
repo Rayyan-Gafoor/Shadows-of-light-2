@@ -16,6 +16,17 @@ public class LightControl : MonoBehaviour
     public GameObject light_gameobject;
     Light directional_light;
     public bool can_change;
+    ThirdPersonCharacterController player_controller;
+    public GameObject Player;
+
+    [Header("Scene Control")]
+    public GameObject tree_leaves;
+    public GameObject tree_leaves2;
+    public GameObject leaves_particles;
+
+    [Header("Scene Camera")]
+    public GameObject scene_cam;
+    public float scene_time;
     /*public Color light_color;
     [Range(1500, 20000)]
     public float colourTemp;
@@ -24,6 +35,7 @@ public class LightControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player_controller = Player.GetComponent<ThirdPersonCharacterController>();
         can_change = false;
         activate = door.GetComponent<activateDoor>();
         directional_light = light_gameobject.GetComponent<Light>();
@@ -31,6 +43,11 @@ public class LightControl : MonoBehaviour
         current_temp = start_color_temp;
         directional_light.colorTemperature = current_temp;
         directional_light.color = current_color;
+
+        tree_leaves.SetActive(false);
+        tree_leaves2.SetActive(false);
+        leaves_particles.SetActive(false);
+        scene_cam.SetActive(false);
     }
 
     // Update is called once per frame
@@ -56,7 +73,7 @@ public class LightControl : MonoBehaviour
         {
             // Debug.Log("LC-Player Has Exited");
             can_change = true;
-
+            StartCoroutine(start_scene());
             StartCoroutine(lerp_float(current_temp, start_color_temp, end_color_temp,duration));
             StartCoroutine(lerp_colour(current_color, start_color, end_color, duration));
         }
@@ -112,6 +129,23 @@ public class LightControl : MonoBehaviour
 
         }
         current_color = end;
+
+    }
+
+    IEnumerator start_scene()
+    {
+        scene_cam.SetActive(true);
+        player_controller.can_move = false;
+        yield return new WaitForSeconds(scene_time);
+        tree_leaves.SetActive(true);
+        tree_leaves2.SetActive(true);
+        leaves_particles.SetActive(true);
+        //play audio
+        // do stuff
+        yield return new WaitForSeconds(scene_time);
+        scene_cam.SetActive(false);
+        player_controller.can_move = true;
+        this.gameObject.SetActive(false);
 
     }
 }

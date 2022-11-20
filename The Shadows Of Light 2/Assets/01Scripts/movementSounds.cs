@@ -18,7 +18,11 @@ public class movementSounds : MonoBehaviour
     [Header("Idle Clips")]
     public AudioClip[] idle_clips;
 
+    [Header("Attack Clips")]
+    public AudioClip[] attack_clips;
 
+    [Header("Jump Clips")]
+    public AudioClip[] jump_clips;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +56,16 @@ public class movementSounds : MonoBehaviour
         /*AudioClip clip = get_idle_clip();
         source.PlayOneShot(clip);*/
     }
+    void attack1()
+    {
+        AudioClip clip = get_attack_clip();
+        source.PlayOneShot(clip);
+    }
+    void jump()
+    {
+        AudioClip clip = get_jump_clip();
+        source.PlayOneShot(clip);
+    }
     ///Get Functions for Audio
     private AudioClip get_walk_clip()
     {
@@ -72,5 +86,15 @@ public class movementSounds : MonoBehaviour
     {
         int index = Random.Range(0, idle_clips.Length - 1);
         return idle_clips[index];
+    }
+    private AudioClip get_attack_clip()
+    {
+        int index = Random.Range(0, attack_clips.Length - 1);
+        return attack_clips[index];
+    }
+    private AudioClip get_jump_clip()
+    {
+        int index = Random.Range(0, jump_clips.Length - 1);
+        return jump_clips[index];
     }
 }
